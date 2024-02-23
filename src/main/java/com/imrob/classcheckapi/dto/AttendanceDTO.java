@@ -12,10 +12,14 @@ public record AttendanceDTO(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id,
         @NotBlank(message = "Campo requerido")
-        LocalDateTime dateTime
+        LocalDateTime dateTime,
+        Long studentId,
+        Long courseId
         ) {
     public AttendanceDTO(Attendance entity){
         this(entity.getId(),
-             entity.getDateTime());
+             entity.getDateTime(),
+             entity.getStudent().getId(),
+             entity.getCourse().getId());
     }
 }
