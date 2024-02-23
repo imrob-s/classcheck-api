@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-
+@RestController
+@RequestMapping(value = "/students")
 public class StudentController {
     @Autowired
     private StudentService service;
 
-    @GetMapping
+
+    @GetMapping(value = "/{id}")
     public ResponseEntity<StudentDTO> findById(@PathVariable Long id) {
         StudentDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);

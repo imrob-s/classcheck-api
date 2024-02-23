@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-
+@RestController
+@RequestMapping(value = "/courses")
 public class CourseController {
     @Autowired
     private CourseService service;
 
-    @GetMapping
+    @GetMapping(value = "/{id}")
     public ResponseEntity<CourseDTO> findById(@PathVariable Long id) {
         CourseDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);

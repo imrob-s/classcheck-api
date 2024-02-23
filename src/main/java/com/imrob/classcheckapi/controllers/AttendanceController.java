@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-
+@RestController
+@RequestMapping(value = "/attendances")
 public class AttendanceController {
 
     @Autowired
     private AttendanceService service;
 
-    @GetMapping
+    @GetMapping(value = "/{id}")
     public ResponseEntity<AttendanceDTO> findById(@PathVariable Long id) {
         AttendanceDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);
