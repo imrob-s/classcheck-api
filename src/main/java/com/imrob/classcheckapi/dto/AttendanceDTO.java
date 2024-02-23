@@ -12,16 +12,10 @@ public record AttendanceDTO(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id,
         @NotBlank(message = "Campo requerido")
-        LocalDateTime dateTime,
-        @ManyToOne
-        @JoinColumn(name = "student_id")
-        @NotBlank(message = "Campo requerido")
-        Student student,
-        @ManyToOne
-        @JoinColumn(name = "course_id")
-        @NotBlank(message = "Campo requerido")
-        Course course) {
+        LocalDateTime dateTime
+        ) {
     public AttendanceDTO(Attendance entity){
-        this(entity.id(), entity.dateTime(), entity.student(), entity.course());
+        this(entity.getId(),
+             entity.getDateTime());
     }
 }
