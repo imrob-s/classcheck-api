@@ -5,15 +5,17 @@ import com.imrob.classcheckapi.entities.Course;
 import com.imrob.classcheckapi.entities.Student;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public record AttendanceDTO(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         Long id,
-        @NotBlank(message = "Campo requerido")
         LocalDateTime dateTime,
+        @NotNull
         Long studentId,
+        @NotNull
         Long courseId
         ) {
     public AttendanceDTO(Attendance entity){

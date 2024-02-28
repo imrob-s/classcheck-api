@@ -17,6 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 @Service
 public class AttendanceService {
     @Autowired
@@ -72,7 +76,7 @@ public class AttendanceService {
 
     private void copyDtoToEntity(AttendanceDTO dto, Attendance entity) {
         entity.setId(dto.id());
-        entity.setDateTime(dto.dateTime());
+        entity.setDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         Student student = studentRepository.findById(dto.studentId())
                 .orElseThrow(() -> new ResourceNotFoundException("Aluno com id %d não foi encontrado"
                 .formatted(dto.studentId())));
